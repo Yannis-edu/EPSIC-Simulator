@@ -24,7 +24,7 @@ public class NPC : MonoBehaviour
                 cam.TxtDialog.transform.parent.gameObject.SetActive(true);
                 if (randomMode)
                 {
-                    cam.TxtDialog.text = answers[Random.Range(0, answers.Length - 1)];
+                    cam.TxtDialog.text = answers[Random.Range(0, answers.Length)];
                 }
                 else
                 {
