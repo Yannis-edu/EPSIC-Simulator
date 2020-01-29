@@ -1,0 +1,72 @@
+﻿using UnityEngine;
+using UnityEngine.UI;
+
+public class NPC : MonoBehaviour
+{
+    public string npcName;
+    public string[] answers;
+    public bool randomMode;
+    private CameraScript cam;
+    private int currentDialog;
+
+    /// <summary>
+    /// Initialisation du script NPC
+    /// </summary>
+    private void Start()
+    {
+        cam = Camera.main.GetComponent<CameraScript>();
+    }
+
+    /// <summary>
+    /// Metghode de gestion des dialogues du pnj Maccaud
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            cam.TxtAction.text = npcName;
+            if (InputManager.GetButtonDown("Fire1"))
+            {
+                cam.TxtDialog.transform.parent.gameObject.SetActive(true);
+                if (randomMode)
+                {
+                    cam.TxtDialog.text = answers[Random.Range(0, answers.Length)];
+                }
+                else
+                {
+                    cam.TxtDialog.text = answers[currentDialog++];// Passe au dialog suivant par incrémentation.
+                }
+                InputManager.disabled = true;// Bloque les mouvements du personnage
+            }
+            else if (Input.GetButtonDown("Fire1"))
+            {
+                // A vérifier si le ++currentDialog ne saute pas
+                // le dialogue de position 0
+                if (++currentDialog < answers.Length && !randomMode)
+                {
+                    cam.TxtDialog.text = answers[currentDialog];
+                }
+                else
+                {
+                    cam.TxtDialog.transform.parent.gameObject.SetActive(false);
+                    InputManager.disabled = false; // Réactive les input de mouvements.
+                    currentDialog = 0; // Réinitialisation des dialogues en position 0.
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Méthode permettant d'afficher le nom d'un pnj ou d'une salle
+    /// si il y a proximité.
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Camera.main.GetComponent<CameraScript>().TxtAction.text = string.Empty;
+        }
+    }
+}
