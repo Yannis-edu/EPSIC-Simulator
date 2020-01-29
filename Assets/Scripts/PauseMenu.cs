@@ -26,5 +26,6 @@ public class PauseMenu : MonoBehaviour
     {
         Save();
         SceneManager.LoadScene("Menu");
+        InputManager.disabled = false;
     }
 }
