@@ -9,8 +9,11 @@ public class CameraScript : MonoBehaviour
     public GameObject mobileControl, pauseMenu;
     private float width, height;
 
+    /// <summary>
+    /// Détéction du matériel
+    /// </summary>
     private void Start()
-    {
+    {      
         Camera camera = GetComponent<Camera>();
         height = 2f * camera.orthographicSize;
         width = height * camera.aspect;
