@@ -31,13 +31,13 @@ public class Scairs : MonoBehaviour
     }
 
     /// <summary>
-    /// Méthode pour empecher de monter plus haut que les escaliers
+    /// Méthode pour empecher de monter plus haut que le sommet des escaliers
     /// </summary>
     /// <param name="collision"></param>
     /*
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collider2D collision)
     {
-        if(Player.GetAxis(y) > Scairs.GetHeight(top)
+        if(Player.GetAxis(y) = Scairs.GetHeight(top)
         {
             player.move(axis(y)) = false;
         }
