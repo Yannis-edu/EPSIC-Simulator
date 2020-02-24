@@ -33,6 +33,7 @@ public class Door : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Camera.main.GetComponent<CameraScript>().TxtAction.text = string.Empty;
+
         }
     }
 }
