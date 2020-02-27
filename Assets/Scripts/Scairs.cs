@@ -29,4 +29,18 @@ public class Scairs : MonoBehaviour
             collision.gameObject.GetComponentInParent<Rigidbody2D>().gravityScale = gravity;
         }
     }
+
+    /// <summary>
+    /// Méthode pour empecher de monter plus haut que le sommet des escaliers
+    /// </summary>
+    /// <param name="collision"></param>
+    /*
+    private void OnCollisionEnter(Collider2D collision)
+    {
+        if(Player.GetAxis(y) = Scairs.GetHeight(top)
+        {
+            player.move(axis(y)) = false;
+        }
+    }
+    */
 }
