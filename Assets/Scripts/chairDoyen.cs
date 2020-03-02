@@ -24,7 +24,7 @@ public class chairDoyen : MonoBehaviour
                 //*** Déplacement horizontale stop ***//
                 //float h = Input.GetAxis("Horizontal");
                 //collision.gameObject.getAxis(("horizontale)", false);
-                //animator.SetBool("walk_left", false);
+                
 
             }
             if (InputManager.GetButtonDown("Vertical") && InputManager.GetAxis("Vertical") > 0)
