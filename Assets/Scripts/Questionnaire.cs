@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.IO;
+﻿using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,14 +23,18 @@ public class Questionnaire : MonoBehaviour
                 var question = sqlite.getRandom("questions");
                 question.Read();
                 cam.TxtQuestion.text = question.GetString(1);
-                
-                byte[] bytes = File.ReadAllBytes(Application.persistentDataPath + "/images_QR/images_questions/" + question.GetString(2));
-                Texture2D imgTexture = new Texture2D(1, 1);
-                imgTexture.filterMode = FilterMode.Bilinear;
-                imgTexture.LoadImage(bytes);
-                Sprite sprite = Sprite.Create(imgTexture, new Rect(0, 0, imgTexture.width, imgTexture.height), new Vector2(0f, 0f), 1.0f);
-                cam.ImgQuestion.GetComponent<AspectRatioFitter>().aspectRatio = (float)imgTexture.width / (float)imgTexture.height;
-                cam.ImgQuestion.sprite = sprite;
+
+                if (question.GetString(4) != "")
+                {
+                    byte[] bytes = File.ReadAllBytes(Application.persistentDataPath + "/images/" + question.GetString(4));
+                    Texture2D imgTexture = new Texture2D(1, 1);
+                    imgTexture.filterMode = FilterMode.Bilinear;
+                    imgTexture.LoadImage(bytes);
+                    Sprite sprite = Sprite.Create(imgTexture, new Rect(0, 0, imgTexture.width, imgTexture.height), new Vector2(0f, 0f), 1.0f);
+                    cam.ImgQuestion.GetComponent<AspectRatioFitter>().aspectRatio = (float)imgTexture.width / imgTexture.height;
+                    cam.ImgQuestion.sprite = sprite;
+                    cam.ImgQuestion.gameObject.SetActive(true);
+                }
 
                 cam.TxtQuestion.transform.parent.gameObject.SetActive(true);
                 InputManager.disabled = true;
@@ -39,6 +42,7 @@ public class Questionnaire : MonoBehaviour
             else if (Input.GetButtonDown("Fire1"))
             {
                 cam.TxtQuestion.transform.parent.gameObject.SetActive(false);
+                cam.ImgQuestion.gameObject.SetActive(false);
                 InputManager.disabled = false;
             }
         }
