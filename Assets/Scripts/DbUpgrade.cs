@@ -34,6 +34,21 @@ public class DbUpgrade : MonoBehaviour
                         question.GetString("date_insert")
                     });
                 }
+
+                string url = "http://localhost/epsic-simulator/images_QR/images_questions/" + question.GetString("image_path");
+                using (UnityWebRequest www2 = UnityWebRequest.Get(url))
+                {
+                    yield return www2.SendWebRequest();
+                    if (www2.isNetworkError || www2.isHttpError)
+                    {
+                        Debug.Log(www2.error);
+                    }
+                    else
+                    {
+                        string savePath = string.Format("{0}/{1}", Application.persistentDataPath + "/images_QR/images_questions/", question.GetString("image_path"));
+                        System.IO.File.WriteAllBytes(savePath, www2.downloadHandler.data);
+                    }
+                }
             }
 
             var answers = o.GetJArray("answers");

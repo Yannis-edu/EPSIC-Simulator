@@ -5,7 +5,8 @@ public class CameraScript : MonoBehaviour
 {
     public Player player;
     public Vector2 minPosition, maxPosition;
-    public Text TxtZone, TxtAction, TxtDialog;
+    public Text TxtZone, TxtAction, TxtDialog, TxtQuestion;
+    public Image ImgQuestion;
     public GameObject mobileControl, pauseMenu;
     private float width, height;
 

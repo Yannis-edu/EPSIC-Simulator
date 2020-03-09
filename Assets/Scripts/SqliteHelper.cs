@@ -64,6 +64,13 @@ public class SqliteHelper
         return dbcmd.ExecuteReader();
     }
 
+    public IDataReader getRandom(string table)
+    {
+        IDbCommand dbcmd = getDbCommand();
+        dbcmd.CommandText = "SELECT * FROM " + table + " ORDER BY RANDOM() LIMIT 1";
+        return dbcmd.ExecuteReader();
+    }
+
     public IDataReader insert(string table_name, string[] data)
     {
         IDbCommand dbcmd = getDbCommand();

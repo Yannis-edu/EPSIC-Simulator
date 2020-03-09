@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class NPC : MonoBehaviour
 {
@@ -18,7 +17,7 @@ public class NPC : MonoBehaviour
     }
 
     /// <summary>
-    /// Metghode de gestion des dialogues du pnj Maccaud
+    /// Methode de gestion des dialogues d'un PNJ
     /// </summary>
     /// <param name="collision"></param>
     private void OnTriggerStay2D(Collider2D collision)
@@ -58,8 +57,8 @@ public class NPC : MonoBehaviour
     }
 
     /// <summary>
-    /// Méthode permettant d'afficher le nom d'un pnj ou d'une salle
-    /// si il y a proximité.
+    /// Méthode permettant d'afficher le nom d'un PNJ
+    /// s'il est à proximité.
     /// </summary>
     /// <param name="collision"></param>
     private void OnTriggerExit2D(Collider2D collision)
