@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  lun. 09 mars 2020 à 17:40
+-- Généré le :  mar. 10 mars 2020 à 22:19
 -- Version du serveur :  10.4.11-MariaDB
 -- Version de PHP :  7.4.1
 
@@ -76,7 +76,47 @@ INSERT INTO `answers` (`id`, `fk_question`, `answer`, `correct`) VALUES
 (34, 12, 'On fusionne les cellules', 1),
 (35, 12, 'On change la taille des colonnes', 0),
 (36, 12, 'On encadre les cellules', 0),
-(37, 12, 'On centre le mot', 0);
+(37, 12, 'On centre le mot', 0),
+(38, 21, 'Integer', 0),
+(39, 21, 'Float', 0),
+(40, 21, 'String', 1),
+(41, 21, 'Int', 0),
+(42, 22, 'Integer', 1),
+(43, 22, 'Float', 0),
+(44, 22, 'String', 0),
+(45, 22, 'Boolean', 0),
+(46, 23, 'Integer', 0),
+(47, 23, 'Float', 1),
+(48, 23, 'String', 0),
+(49, 23, 'Boolean', 0),
+(50, 24, 'b + a', 0),
+(51, 24, 'Salut', 0),
+(52, 24, 'lutSa', 1),
+(53, 24, 'ERROR', 0),
+(54, 25, '12*4', 1),
+(55, 25, '48', 0),
+(56, 25, '48.0', 0),
+(57, 25, 'ERROR', 0),
+(58, 26, '12*4.0', 0),
+(59, 26, '48', 0),
+(60, 26, '48.0', 1),
+(61, 26, 'ERROR', 0),
+(62, 27, '5', 0),
+(63, 27, '32', 0),
+(64, 27, '\"3\" + 2', 0),
+(65, 27, 'ERROR', 0),
+(66, 28, 'Integer', 0),
+(67, 28, 'Float', 0),
+(68, 28, 'String', 1),
+(69, 28, 'Boolean', 0),
+(70, 29, '5', 1),
+(71, 29, '32', 0),
+(72, 29, 'ERROR', 0),
+(73, 29, '3 + int(\"2\")', 0),
+(74, 30, '5', 0),
+(75, 30, '32', 1),
+(76, 30, 'ERROR', 0),
+(77, 30, '3 + \"2\"', 0);
 
 -- --------------------------------------------------------
 
@@ -96,7 +136,10 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`id`, `category`, `fk_parent`) VALUES
 (10, 'Bureautique', NULL),
-(12, 'Excel', 10);
+(12, 'Excel', 10),
+(13, 'Informatique', NULL),
+(14, 'Programmation', 13),
+(15, 'Python', 14);
 
 -- --------------------------------------------------------
 
@@ -118,15 +161,25 @@ CREATE TABLE `questions` (
 
 INSERT INTO `questions` (`id`, `question`, `points`, `fk_category`, `picture`) VALUES
 (3, 'Comment appelle-t-on un fichier Excel ?', 1, 12, NULL),
-(4, 'Un classeur excel est constitué de…', 1, 12, NULL),
-(5, 'Comment appelle-t-on les \"cases\" d\'un tableau excel ?', 1, 12, NULL),
+(4, 'Un classeur Excel est constitué de…', 1, 12, NULL),
+(5, 'Comment appelle-t-on les \"cases\" d\'un tableau Excel ?', 1, 12, NULL),
 (6, 'Quel est le nom de la cellule sélectionnée ?', 1, 12, 'XL_Cellule.PNG'),
 (7, 'Je dois additionner plusieurs nombres, quelle est la formule que je dois utiliser ?', 1, 12, NULL),
 (8, 'Je dois multiplier plusieurs nombres, quelle est la formule que je dois utiliser ?', 1, 12, NULL),
 (9, 'Je dois calculer un prix moyen, quelle est la formule que je dois utiliser ?', 1, 12, NULL),
 (10, 'Sélectionnez une des formules qui renvoie 20', 1, 12, 'XL_Formule_Addition.webp'),
 (11, 'Comment appelle-t-on ce type de graphique ?', 1, 12, 'XL_Graphique.webp'),
-(12, 'Comment fait-on pour qu\'un mot soit réparti sur 3 cellules ?', 1, 12, NULL);
+(12, 'Comment fait-on pour qu\'un mot soit réparti sur 3 cellules ?', 1, 12, NULL),
+(21, 'Quel est le type de a ?', 1, 15, 'Python-type-1.png'),
+(22, 'Quel est le type de a ?', 1, 15, 'Python-type-2.png'),
+(23, 'Quel est le type de a ?', 1, 15, 'Python-type-3.png'),
+(24, 'Quel est le résultat du script suivant ?', 1, 15, 'Python-type-4.png'),
+(25, 'Quel est le résultat du script suivant ?', 1, 15, 'Python-type-5.png'),
+(26, 'Quel est le résultat du script suivant ?', 1, 15, 'Python-type-6.png'),
+(27, 'Quel est le résultat du script suivant ?', 1, 15, 'Python-type-7.png'),
+(28, 'Quel est le type de a ?', 1, 15, 'Python-type-8.png'),
+(29, 'Quel est le résultat du script suivant ?', 1, 15, 'Python-type-9.png'),
+(30, 'Quel est le résultat du script suivant ?', 1, 15, 'Python-type-10.png');
 
 --
 -- Index pour les tables déchargées
@@ -161,19 +214,19 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT pour la table `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT pour la table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT pour la table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Contraintes pour les tables déchargées
