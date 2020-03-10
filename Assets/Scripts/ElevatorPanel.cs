@@ -8,7 +8,7 @@ public class ElevatorPanel : MonoBehaviour
     {
         for (int i = 0; i <= 9; i++)
         {
-            if (InputManager.GetKey(i.ToString()))
+            if (Input.GetKey(i.ToString()))
             {
                 elevator.SetDestination(i);
                 break;

@@ -301,10 +301,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 77643196}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ba01d0653ef7204da1e66a87a71aa1e, type: 3}
+  m_Script: {fileID: 11500000, guid: 995f34434fbe45d46aacf4e120446279, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonName: Fire2
+  button:
+    m_key: Fire2
+    value: 0
 --- !u!114 &77643199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4611,10 +4613,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 863674477}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ba01d0653ef7204da1e66a87a71aa1e, type: 3}
+  m_Script: {fileID: 11500000, guid: 995f34434fbe45d46aacf4e120446279, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonName: Run
+  button:
+    m_key: Run
+    value: 0
 --- !u!114 &863674480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4744,6 +4748,7 @@ GameObject:
   - component: {fileID: 928187791}
   - component: {fileID: 928187790}
   - component: {fileID: 928187792}
+  - component: {fileID: 928187794}
   - component: {fileID: 928187789}
   - component: {fileID: 928187793}
   m_Layer: 5
@@ -4782,11 +4787,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 928187787}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 514737348adf7924caeac608a1473e69, type: 3}
+  m_Script: {fileID: 11500000, guid: fda952153dba3064ab80a62889c1583f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonName: Vertical
-  position: -1
+  axis:
+    m_key: Vertical
+    value: 0
+  value: -1
 --- !u!114 &928187790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4892,6 +4899,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 45, y: 45}
   m_EdgeRadius: 0
+--- !u!114 &928187794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928187787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 995f34434fbe45d46aacf4e120446279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button:
+    m_key: Vertical
+    value: 0
 --- !u!1 &930965036
 GameObject:
   m_ObjectHideFlags: 0
@@ -5860,7 +5882,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1122251181
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6168,10 +6190,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1157439032}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ba01d0653ef7204da1e66a87a71aa1e, type: 3}
+  m_Script: {fileID: 11500000, guid: 995f34434fbe45d46aacf4e120446279, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonName: Fire1
+  button:
+    m_key: Fire1
+    value: 0
 --- !u!114 &1157439035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6431,6 +6455,7 @@ GameObject:
   - component: {fileID: 1189539740}
   - component: {fileID: 1189539739}
   - component: {fileID: 1189539741}
+  - component: {fileID: 1189539743}
   - component: {fileID: 1189539738}
   - component: {fileID: 1189539742}
   m_Layer: 5
@@ -6469,11 +6494,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1189539736}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 514737348adf7924caeac608a1473e69, type: 3}
+  m_Script: {fileID: 11500000, guid: fda952153dba3064ab80a62889c1583f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonName: Vertical
-  position: 1
+  axis:
+    m_key: Vertical
+    value: 0
+  value: 1
 --- !u!114 &1189539739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6579,6 +6606,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 45, y: 45}
   m_EdgeRadius: 0
+--- !u!114 &1189539743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189539736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 995f34434fbe45d46aacf4e120446279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button:
+    m_key: Vertical
+    value: 0
 --- !u!4 &1221162693 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4375589883911020478, guid: 6b87bcb1048089f4c8734afeae7ad988,
@@ -42035,7 +42077,7 @@ GameObject:
   - component: {fileID: 1665979147}
   - component: {fileID: 1665979146}
   - component: {fileID: 1665979148}
-  - component: {fileID: 1665979145}
+  - component: {fileID: 1665979150}
   - component: {fileID: 1665979149}
   m_Layer: 5
   m_Name: Jump
@@ -42064,19 +42106,6 @@ RectTransform:
   m_AnchoredPosition: {x: -84.25, y: 84.75}
   m_SizeDelta: {x: 45, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1665979145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1665979143}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ba01d0653ef7204da1e66a87a71aa1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonName: Jump
 --- !u!114 &1665979146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42182,6 +42211,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 45, y: 45}
   m_EdgeRadius: 0
+--- !u!114 &1665979150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665979143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 995f34434fbe45d46aacf4e120446279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button:
+    m_key: Jump
+    value: 0
 --- !u!1 &1705113589
 GameObject:
   m_ObjectHideFlags: 0
@@ -42194,6 +42238,7 @@ GameObject:
   - component: {fileID: 1705113593}
   - component: {fileID: 1705113592}
   - component: {fileID: 1705113594}
+  - component: {fileID: 1705113596}
   - component: {fileID: 1705113591}
   - component: {fileID: 1705113595}
   m_Layer: 5
@@ -42232,11 +42277,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1705113589}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 514737348adf7924caeac608a1473e69, type: 3}
+  m_Script: {fileID: 11500000, guid: fda952153dba3064ab80a62889c1583f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonName: Horizontal
-  position: -1
+  axis:
+    m_key: Horizontal
+    value: 0
+  value: -1
 --- !u!114 &1705113592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42353,6 +42400,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 45, y: 45}
   m_EdgeRadius: 0
+--- !u!114 &1705113596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705113589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 995f34434fbe45d46aacf4e120446279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button:
+    m_key: Horizontal
+    value: 0
 --- !u!1 &1711011470
 GameObject:
   m_ObjectHideFlags: 0
@@ -43707,6 +43769,7 @@ GameObject:
   - component: {fileID: 1897180722}
   - component: {fileID: 1897180721}
   - component: {fileID: 1897180723}
+  - component: {fileID: 1897180725}
   - component: {fileID: 1897180720}
   - component: {fileID: 1897180724}
   m_Layer: 5
@@ -43745,11 +43808,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1897180718}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 514737348adf7924caeac608a1473e69, type: 3}
+  m_Script: {fileID: 11500000, guid: fda952153dba3064ab80a62889c1583f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonName: Horizontal
-  position: 1
+  axis:
+    m_key: Horizontal
+    value: 0
+  value: 1
 --- !u!114 &1897180721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43855,6 +43920,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 45, y: 45}
   m_EdgeRadius: 0
+--- !u!114 &1897180725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897180718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 995f34434fbe45d46aacf4e120446279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button:
+    m_key: Horizontal
+    value: 0
 --- !u!1 &1901179047
 GameObject:
   m_ObjectHideFlags: 0

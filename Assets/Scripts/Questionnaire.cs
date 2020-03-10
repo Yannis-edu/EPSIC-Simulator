@@ -17,7 +17,7 @@ public class Questionnaire : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             cam.TxtAction.text = questionnaireName;
-            if (InputManager.GetButtonDown("Fire1"))
+            if (!StaticClass.disableInput && SimpleInput.GetButtonDown("Fire1"))
             {
                 SqliteHelper sqlite = new SqliteHelper();
                 var question = sqlite.getRandom("questions");
@@ -37,13 +37,13 @@ public class Questionnaire : MonoBehaviour
                 }
 
                 cam.TxtQuestion.transform.parent.gameObject.SetActive(true);
-                InputManager.disabled = true;
+                StaticClass.disableInput = true;
             }
-            else if (Input.GetButtonDown("Fire1"))
+            else if (StaticClass.disableInput && (SimpleInput.GetButtonDown("Fire1") || SimpleInput.GetButtonDown("Touch anywhere")))
             {
                 cam.TxtQuestion.transform.parent.gameObject.SetActive(false);
                 cam.ImgQuestion.gameObject.SetActive(false);
-                InputManager.disabled = false;
+                StaticClass.disableInput = false;
             }
         }
     }

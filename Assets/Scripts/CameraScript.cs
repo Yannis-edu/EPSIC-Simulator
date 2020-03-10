@@ -50,9 +50,9 @@ public class CameraScript : MonoBehaviour
         ), 50 * Time.fixedDeltaTime);
 
 
-        if (InputManager.GetButtonDown("Cancel"))
+        if (SimpleInput.GetButtonDown("Cancel"))
         {
-            InputManager.disabled = true;
+            StaticClass.disableInput = true;
             pauseMenu.SetActive(true);
         }
     }

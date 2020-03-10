@@ -13,7 +13,7 @@ public class DbUpgrade : MonoBehaviour
 
     IEnumerator GetText()
     {
-        UnityWebRequest www = UnityWebRequest.Get("http://localhost/epsic-simulator/upgrade.php");
+        UnityWebRequest www = UnityWebRequest.Get("http://192.168.137.1/epsic-simulator/upgrade.php");
         yield return www.SendWebRequest();
 
         if (!www.isNetworkError)
@@ -40,7 +40,7 @@ public class DbUpgrade : MonoBehaviour
                 string pictureName = question.GetString("picture");
                 if (pictureName != null)
                 {
-                    string url = "http://localhost/epsic-simulator/images/" + pictureName;
+                    string url = "http://192.168.137.1/epsic-simulator/images/" + pictureName;
                     using (UnityWebRequest www2 = UnityWebRequest.Get(url))
                     {
                         yield return www2.SendWebRequest();

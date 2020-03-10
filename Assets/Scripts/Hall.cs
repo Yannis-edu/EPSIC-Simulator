@@ -7,14 +7,14 @@ public class Hall : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && InputManager.GetButtonDown("Vertical"))
+        if (collision.gameObject.CompareTag("Player") && SimpleInput.GetButtonDown("Vertical"))
         {
-            if (InputManager.GetAxis("Vertical") > 0 && destinationBack != null)
+            if (SimpleInput.GetAxis("Vertical") > 0 && destinationBack != null)
             {
                 collision.gameObject.transform.position += destinationBack.transform.position - transform.position;
                 Camera.main.transform.position += destinationBack.transform.position - transform.position;
             }
-            else if (InputManager.GetAxis("Vertical") < 0 && destinationFront != null)
+            else if (SimpleInput.GetAxis("Vertical") < 0 && destinationFront != null)
             {
                 collision.gameObject.transform.position += destinationFront.transform.position - transform.position;
                 Camera.main.transform.position += destinationFront.transform.position - transform.position;
