@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using SimpleInputNamespace;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -36,14 +37,39 @@ public class Questionnaire : MonoBehaviour
                     cam.ImgQuestion.gameObject.SetActive(true);
                 }
 
+                var answers = sqlite.getDataByString("answers", "fk_question", question.GetInt32(0).ToString());
+                for (int i = 0; i < cam.answers.Length; i++)
+                {
+                    if (answers.Read())
+                    {
+                        cam.answers[i].GetComponentInChildren<Text>().text = i + 1 + ") " + answers.GetString(2);
+                        cam.answers[i].GetComponentInChildren<Answer>().correct = answers.GetBoolean(3);
+                    }
+                }
+
                 cam.TxtQuestion.transform.parent.gameObject.SetActive(true);
                 StaticClass.disableInput = true;
             }
-            else if (StaticClass.disableInput && (SimpleInput.GetButtonDown("Fire1") || SimpleInput.GetButtonDown("Touch anywhere")))
+            else
             {
-                cam.TxtQuestion.transform.parent.gameObject.SetActive(false);
-                cam.ImgQuestion.gameObject.SetActive(false);
-                StaticClass.disableInput = false;
+                for (int i = 0; i < 4; i++)
+                {
+                    if (StaticClass.disableInput && SimpleInput.GetButtonDown("Answer " + (i + 1)))
+                    {
+                        if (cam.answers[i].GetComponentInChildren<Answer>().correct)
+                        {
+                            // True answer
+                        }
+                        else
+                        {
+                            // False answer
+                        }
+                        cam.answers[i].GetComponentInChildren<ButtonInputUI>().button.value = false;
+                        cam.TxtQuestion.transform.parent.gameObject.SetActive(false);
+                        cam.ImgQuestion.gameObject.SetActive(false);
+                        StaticClass.disableInput = false;
+                    }
+                }
             }
         }
     }
