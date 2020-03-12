@@ -13,7 +13,7 @@ public class ElevatorDoorOut : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && InputManager.GetButton("Fire1"))
+        if (collision.gameObject.CompareTag("Player") && SimpleInput.GetButton("Fire1"))
         {
             if (elevatorDoor.level == elevatorDoor.elevator.currentLevel && elevatorDoor.elevator.currentLevel == elevatorDoor.elevator.destinationLevel)
             {
