@@ -32,7 +32,7 @@ public class chairDoyen : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             txtAction.text = destinationName;
-            if (InputManager.GetButtonDown("Vertical") && InputManager.GetAxis("Vertical") < 0)
+            if (SimpleInput.GetButtonDown("Vertical") && SimpleInput.GetAxis("Vertical") < 0)
             {
                 collision.gameObject.GetComponent<Player>().animator.SetBool("isAssis", true);
                 //*** Déplacement horizontale stop ***//
@@ -41,7 +41,7 @@ public class chairDoyen : MonoBehaviour
                 
 
             }
-            if (InputManager.GetButtonDown("Vertical") && InputManager.GetAxis("Vertical") > 0)
+            if (SimpleInput.GetButtonDown("Vertical") && SimpleInput.GetAxis("Vertical") > 0)
             {
                 collision.gameObject.GetComponent<Player>().animator.SetBool("isAssis", false);
             }
