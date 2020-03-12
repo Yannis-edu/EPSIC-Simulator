@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (InputManager.GetButton("Jump"))
+        if (!StaticClass.disableInput && SimpleInput.GetButton("Jump"))
         {
             if (grounded)
             {
@@ -49,12 +49,12 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpPower * Time.fixedDeltaTime);
         }
 
-        float directionH = InputManager.GetAxis("Horizontal");
+        float directionH = StaticClass.disableInput ? 0 : SimpleInput.GetAxis("Horizontal");
         float moveSpeed = directionH * speed;
 
         sprite.flipX = directionH < 0 ? true : directionH > 0 ? false : sprite.flipX;
 
-        if (InputManager.GetButton("Run"))
+        if (!StaticClass.disableInput && SimpleInput.GetButton("Run"))
         {
             moveSpeed *= runRatio;
         }

@@ -25,25 +25,13 @@ public class SqliteHelper
     public void createDatabase()
     {
         IDbCommand dbcmd = getDbCommand();
-        dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS questions(id INTEGER PRIMARY KEY AUTOINCREMENT, question TEXT, image_path VARCHAR, date_insert DATETIME);";
+        dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS answers(id INTEGER PRIMARY KEY AUTOINCREMENT, fk_question INTEGER, answer VARCHAR, correct BOOLEAN);";
         dbcmd.ExecuteReader();
         dbcmd = getDbCommand();
-        dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS answers(id INTEGER PRIMARY KEY AUTOINCREMENT, answer TEXT, image_path VARCHAR, source_answer TEXT, points INTEGER, date_insert DATETIME);";
+        dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS categories(id INTEGER PRIMARY KEY AUTOINCREMENT, category VARCHAR, fk_parent INTEGER);";
         dbcmd.ExecuteReader();
         dbcmd = getDbCommand();
-        dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS questions_answers(id INTEGER PRIMARY KEY AUTOINCREMENT, fk_question INTEGER, fk_answer INTEGER, date_insert DATETIME);";
-        dbcmd.ExecuteReader();
-        dbcmd = getDbCommand();
-        dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS categories(id INTEGER PRIMARY KEY AUTOINCREMENT, category_folder VARCHAR, category_name VARCHAR, date_insert DATETIME);";
-        dbcmd.ExecuteReader();
-        dbcmd = getDbCommand();
-        dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS questions_categories(id INTEGER PRIMARY KEY AUTOINCREMENT, fk_question INTEGER, fk_category INTEGER, date_insert DATETIME);";
-        dbcmd.ExecuteReader();
-        dbcmd = getDbCommand();
-        dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS sub_categories(id INTEGER PRIMARY KEY AUTOINCREMENT, sub_category_name VARCHAR, date_insert DATETIME);";
-        dbcmd.ExecuteReader();
-        dbcmd = getDbCommand();
-        dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS questions_sub_categories(id INTEGER PRIMARY KEY AUTOINCREMENT, fk_question INTEGER, fk_sub_category INTEGER, date_insert DATETIME);";
+        dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS questions(id INTEGER PRIMARY KEY AUTOINCREMENT, question TEXT, points FLOAT, fk_category INTEGER, picture VARCHAR);";
         dbcmd.ExecuteReader();
     }
 
@@ -61,6 +49,13 @@ public class SqliteHelper
     {
         IDbCommand dbcmd = getDbCommand();
         dbcmd.CommandText = "SELECT * FROM " + table_name + " WHERE " + key + " = '" + value + "'";
+        return dbcmd.ExecuteReader();
+    }
+
+    public IDataReader getRandom(string table)
+    {
+        IDbCommand dbcmd = getDbCommand();
+        dbcmd.CommandText = "SELECT * FROM " + table + " ORDER BY RANDOM() LIMIT 1";
         return dbcmd.ExecuteReader();
     }
 

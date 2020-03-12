@@ -5,8 +5,10 @@ public class CameraScript : MonoBehaviour
 {
     public Player player;
     public Vector2 minPosition, maxPosition;
-    public Text TxtZone, TxtAction, TxtDialog;
+    public Text TxtZone, TxtAction, TxtDialog, TxtQuestion;
+    public Image ImgQuestion;
     public GameObject mobileControl, pauseMenu;
+    public GameObject[] answers;
     private float width, height;
 
     /// <summary>
@@ -24,22 +26,6 @@ public class CameraScript : MonoBehaviour
         }
     }
 
-    /*private void Update()
-    {
-        for (int i = 0; i < Input.touchCount; i++)
-        {
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.touches[i].position), Vector2.zero);
-            if (Input.touches[i].phase == TouchPhase.Began)
-            {
-                hit.collider.gameObject.GetComponent<MobileButton>().Down();
-            }
-            if (Input.touches[i].phase == TouchPhase.Ended)
-            {
-                hit.collider.gameObject.GetComponent<MobileButton>().Up();
-            }
-        }
-    }*/
-
     private void FixedUpdate()
     {
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(
@@ -49,9 +35,9 @@ public class CameraScript : MonoBehaviour
         ), 50 * Time.fixedDeltaTime);
 
 
-        if (InputManager.GetButtonDown("Cancel"))
+        if (SimpleInput.GetButtonDown("Cancel"))
         {
-            InputManager.disabled = true;
+            StaticClass.disableInput = true;
             pauseMenu.SetActive(true);
         }
     }

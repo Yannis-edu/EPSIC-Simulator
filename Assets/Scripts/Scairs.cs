@@ -18,7 +18,7 @@ public class Scairs : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Grounder"))
         {
-            collision.gameObject.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(0, InputManager.GetAxis("Vertical") * collision.gameObject.GetComponentInParent<Player>().speed * climbRatio * Time.fixedDeltaTime);
+            collision.gameObject.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(0, SimpleInput.GetAxis("Vertical") * collision.gameObject.GetComponentInParent<Player>().speed * climbRatio * Time.fixedDeltaTime);
         }
     }
 

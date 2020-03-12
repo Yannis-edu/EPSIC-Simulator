@@ -13,7 +13,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Play()
     {
-        InputManager.disabled = false;
+        StaticClass.disableInput = false;
         gameObject.SetActive(false);
     }
 
@@ -26,6 +26,6 @@ public class PauseMenu : MonoBehaviour
     {
         Save();
         SceneManager.LoadScene("Menu");
-        InputManager.disabled = false;
+        StaticClass.disableInput = false;
     }
 }
