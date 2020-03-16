@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public float runRatio;
     public float jumpPower;
     public Animator animator;
+    public GameObject pointsScreen;
 
     // Others public variables for others scripts
     public bool grounded;
@@ -27,6 +28,8 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        pointsScreen.SetActive(!StaticClass.disableInput && SimpleInput.GetButton("Points Screen"));
+
         if (!StaticClass.disableInput && SimpleInput.GetButton("Jump"))
         {
             if (grounded)

@@ -33,7 +33,8 @@ public class DbUpgrade : MonoBehaviour
                         question.GetString("question"),
                         question.GetString("points"),
                         question.GetString("fk_category"),
-                        question.GetString("picture")
+                        question.GetString("picture"),
+                        "0"
                     });
                 }
 
