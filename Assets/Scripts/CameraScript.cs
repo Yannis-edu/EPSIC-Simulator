@@ -7,7 +7,7 @@ public class CameraScript : MonoBehaviour
     public Vector2 minPosition, maxPosition;
     public Text TxtZone, TxtAction, TxtDialog, TxtQuestion;
     public Image ImgQuestion;
-    public GameObject mobileControl, pauseMenu;
+    public GameObject mobileControl, pauseMenu, trueIcon, falseIcon;
     public GameObject[] answers;
     private float width, height;
 
@@ -24,6 +24,8 @@ public class CameraScript : MonoBehaviour
         {
             mobileControl.SetActive(true);
         }
+        trueIcon.GetComponent<Image>().CrossFadeAlpha(0, 0, false);
+        falseIcon.GetComponent<Image>().CrossFadeAlpha(0, 0, false);
     }
 
     private void FixedUpdate()

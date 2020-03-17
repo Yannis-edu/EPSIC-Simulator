@@ -66,6 +66,12 @@ public class SqliteHelper
         dbcmd.ExecuteNonQuery();
     }
 
+    public void resetAllQuestions()
+    {
+        IDbCommand dbcmd = getDbCommand();
+        dbcmd.CommandText = "UPDATE questions SET validated = 0";
+        dbcmd.ExecuteNonQuery();
+    }
 
     public IDataReader insert(string table_name, string[] data)
     {

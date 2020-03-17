@@ -17,7 +17,7 @@ public class Category : MonoBehaviour
             points = value;
             GetComponentInChildren<Text>().text = CategoryName + " (" + points + " / " + Total + ")";
             GetComponentInChildren<Slider>().value = points / Total;
-            PlayerPrefs.SetFloat("save" + StaticClass.save + "_pts_" + CategoryName, points);
+            PlayerPrefs.SetFloat("pts_" + CategoryName, points);
         }
     }
 
@@ -27,7 +27,12 @@ public class Category : MonoBehaviour
         var category = sqlite.getDataByString("categories", "category", CategoryName);
         category.Read();
         Total = sqlite.sum("questions", "points", "fk_category", category.GetInt32(0).ToString());
-        Points = PlayerPrefs.GetFloat("save" + StaticClass.save + "_pts_" + CategoryName, 0);
+        Points = PlayerPrefs.GetFloat("pts_" + CategoryName, 0);
         PointsSystem.categories.Add(CategoryName, this);
+    }
+
+    public void Delete()
+    {
+        PlayerPrefs.DeleteKey("pts_" + CategoryName);
     }
 }

@@ -1,11 +1,20 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void ChooseSave(int i)
+    public void StartGame()
     {
-        StaticClass.save = i;
         SceneManager.LoadScene("epsic");
+    }
+
+    public void Delete()
+    {
+        if (EditorUtility.DisplayDialog("Suppression définitive", "Voulez-vous vraiment supprimer tout votre avancement ? ", "Oui", "Non"))
+        {
+            new SqliteHelper().resetAllQuestions();
+            PlayerPrefs.DeleteAll();
+        }
     }
 }

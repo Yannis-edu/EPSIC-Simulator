@@ -85,10 +85,13 @@ public class Questionnaire : MonoBehaviour
                                 PointsSystem.categories[categoryName].Points += points;
                                 SqliteHelper sqlite = new SqliteHelper();
                                 sqlite.validateQuestion(questionID);
+                                cam.trueIcon.GetComponent<Image>().CrossFadeAlpha(1, 0, false);
+                                cam.trueIcon.GetComponent<Image>().CrossFadeAlpha(0, 1, false);
                             }
                             else
                             {
-
+                                cam.falseIcon.GetComponent<Image>().CrossFadeAlpha(1, 0, false);
+                                cam.falseIcon.GetComponent<Image>().CrossFadeAlpha(0, 1, false);
                             }
                             cam.answers[i].GetComponentInChildren<ButtonInputUI>().button.value = false;
                             cam.TxtQuestion.transform.parent.gameObject.SetActive(false);

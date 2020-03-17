@@ -25,7 +25,8 @@ public class PauseMenu : MonoBehaviour
     public void SaveAndQuit()
     {
         Save();
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("menu");
         StaticClass.disableInput = false;
+        PointsSystem.categories.Clear();
     }
 }
