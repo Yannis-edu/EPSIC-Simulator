@@ -21,9 +21,6 @@ public class Door : MonoBehaviour
             {
                 collision.gameObject.transform.position = destinationDoor.transform.position;
                 Camera.main.transform.position = new Vector3(destinationDoor.transform.position.x, destinationDoor.transform.position.y, Camera.main.transform.position.z);
-                destinationDoor.destinationDoor = this;
-                destinationDoor.destinationName = GetComponentInParent<Zone>()?.zoneName;
-                destinationDoor.GetComponentInParent<Zone>().zoneName = destinationName;
             }
         }
     }

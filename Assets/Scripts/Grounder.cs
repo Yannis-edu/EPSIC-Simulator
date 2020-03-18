@@ -2,7 +2,7 @@
 
 public class Grounder : MonoBehaviour
 {
-    public Player playerScript;
+    public Entity playerScript;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
