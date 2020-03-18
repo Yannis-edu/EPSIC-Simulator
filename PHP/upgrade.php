@@ -30,4 +30,15 @@ while ($row = $result->fetch_assoc()) {
 }
 
 header("Content-Type: application/json; charset=UTF-8");
-echo str_replace("'", "''", json_encode($json));
+echo str_replace("'", "''", json_encode(utf8ize($json)));
+
+function utf8ize($d) {
+	if (is_array($d)) {
+		foreach ($d as $k => $v) {
+			$d[$k] = utf8ize($v);
+		}
+	} else if (is_string ($d)) {
+		return utf8_encode($d);
+	}
+	return $d;
+}

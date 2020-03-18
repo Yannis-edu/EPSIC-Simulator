@@ -11,10 +11,10 @@ public class MainMenu : MonoBehaviour
 
     public void Delete()
     {
-        if (EditorUtility.DisplayDialog("Suppression définitive", "Voulez-vous vraiment supprimer tout votre avancement ? ", "Oui", "Non"))
-        {
+        //if (EditorUtility.DisplayDialog("Suppression définitive", "Voulez-vous vraiment supprimer tout votre avancement ? ", "Oui", "Non"))
+        //{
             new SqliteHelper().resetAllQuestions();
             PlayerPrefs.DeleteAll();
-        }
+        //}
     }
 }
