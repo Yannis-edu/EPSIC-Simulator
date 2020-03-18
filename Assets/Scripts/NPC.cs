@@ -2,6 +2,7 @@
 
 public class NPC : Entity
 {
+    public bool talking;
     private float timeToChangeDirection;
     private float horizontal;
 
@@ -14,7 +15,7 @@ public class NPC : Entity
             horizontal = Random.Range(-1, 2);
         }
 
-        if (false)
+        if (talking)
         {
             Move(0, false, false);
         }

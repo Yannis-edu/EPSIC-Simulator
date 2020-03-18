@@ -24,11 +24,12 @@ public class NPCDialog : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            cam.TxtAction.text = npcName;
             if (answers.Length != 0)
             {
-                cam.TxtAction.text = npcName;
                 if (!StaticClass.disableInput && SimpleInput.GetButtonDown("Fire1"))
                 {
+                    GetComponentInParent<NPC>().talking = true;
                     cam.TxtDialog.transform.parent.gameObject.SetActive(true);
                     if (randomMode)
                     {
@@ -53,6 +54,7 @@ public class NPCDialog : MonoBehaviour
                         cam.TxtDialog.transform.parent.gameObject.SetActive(false);
                         StaticClass.disableInput = false; // Réactive les input de mouvements.
                         currentDialog = 0; // Réinitialisation des dialogues en position 0.
+                        GetComponentInParent<NPC>().talking = false;
                     }
                 }
             }
@@ -69,6 +71,10 @@ public class NPCDialog : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Camera.main.GetComponent<CameraScript>().TxtAction.text = string.Empty;
+            cam.TxtDialog.transform.parent.gameObject.SetActive(false);
+            StaticClass.disableInput = false; // Réactive les input de mouvements.
+            currentDialog = 0; // Réinitialisation des dialogues en position 0.
+            GetComponentInParent<NPC>().talking = false;
         }
     }
 }
