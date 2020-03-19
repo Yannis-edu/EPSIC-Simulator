@@ -3897,6 +3897,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 409d4a5ed44f12b43bb55428b4db357f, type: 3}
+--- !u!1 &564366222 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8801840360190409044, guid: 03f6dadc1937b52469e6f6ff518642d6,
+    type: 3}
+  m_PrefabInstance: {fileID: 685171119}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &564366224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564366222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47af92cfef0a02843a6410ca7bbecb92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comName: Ordinateur du doyen
+  categoryName: Excel
+  seuil: 0.8
 --- !u!1 &573675129
 GameObject:
   m_ObjectHideFlags: 0
@@ -4574,7 +4595,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Station (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8801840360190409033, guid: 03f6dadc1937b52469e6f6ff518642d6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 03f6dadc1937b52469e6f6ff518642d6, type: 3}
 --- !u!4 &685171120 stripped
 Transform:

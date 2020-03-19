@@ -242,8 +242,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcName: Rogeiro
-  answers: []
-  randomMode: 0
+  answers:
+  - Bonjour Monsieur
+  randomMode: 1
 --- !u!1 &8687593038184293676
 GameObject:
   m_ObjectHideFlags: 0
