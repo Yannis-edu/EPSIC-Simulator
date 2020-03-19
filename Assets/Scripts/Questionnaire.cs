@@ -14,9 +14,12 @@ public class Questionnaire : MonoBehaviour
     private void Start()
     {
         cam = Camera.main.GetComponent<CameraScript>();
-        var category = new SqliteHelper().getDataByString("categories", "category", categoryName);
-        category.Read();
-        categoryID = category.GetInt32(0);
+        if(categoryName != "")
+        {
+            var category = new SqliteHelper().getDataByString("categories", "category", categoryName);
+            category.Read();
+            categoryID = category.GetInt32(0);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -24,7 +27,7 @@ public class Questionnaire : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             cam.TxtAction.text = questionnaireName;
-            if (!StaticClass.disableInput && SimpleInput.GetButtonDown("Fire1"))
+            if (categoryID != 0 && !StaticClass.disableInput && SimpleInput.GetButtonDown("Fire1"))
             {
                 SqliteHelper sqlite = new SqliteHelper();
                 var question = sqlite.getRandomQuestion(categoryID.ToString());
