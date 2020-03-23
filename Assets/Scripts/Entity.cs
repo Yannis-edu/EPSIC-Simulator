@@ -6,6 +6,7 @@ public class Entity : MonoBehaviour
     public float speed;
     public float runRatio;
     public float jumpPower;
+    public GameObject inHand;
 
     public bool grounded;
     public float vertical;

@@ -92620,6 +92620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb2100266a25f444a8fab248e07cef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  takeable: 1
   taken: 0
   newSprite: {fileID: 21300000, guid: ec69a0431ddbeda468310281bf02d859, type: 3}
 --- !u!1001 &6408462499060513962

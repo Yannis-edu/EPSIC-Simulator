@@ -5,8 +5,8 @@ public class NPCDialog : MonoBehaviour
     public string npcName;
     public string[] answers;
     public bool randomMode;
-    private CameraScript cam;
-    private int currentDialog;
+    protected CameraScript cam;
+    protected int currentDialog;
 
     /// <summary>
     /// Initialisation du script NPC
@@ -25,37 +25,42 @@ public class NPCDialog : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             cam.TxtAction.text = npcName;
-            if (answers.Length != 0)
+            Message();
+        }
+    }
+
+    protected void Message()
+    {
+        if (answers.Length != 0)
+        {
+            if (!StaticClass.disableInput && SimpleInput.GetButtonDown("Fire1"))
             {
-                if (!StaticClass.disableInput && SimpleInput.GetButtonDown("Fire1"))
+                GetComponentInParent<NPC>().talking = true;
+                cam.TxtDialog.transform.parent.gameObject.SetActive(true);
+                if (randomMode)
                 {
-                    GetComponentInParent<NPC>().talking = true;
-                    cam.TxtDialog.transform.parent.gameObject.SetActive(true);
-                    if (randomMode)
-                    {
-                        cam.TxtDialog.text = answers[Random.Range(0, answers.Length)];
-                    }
-                    else
-                    {
-                        cam.TxtDialog.text = answers[currentDialog++];// Passe au dialog suivant par incrémentation.
-                    }
-                    StaticClass.disableInput = true;// Bloque les mouvements du personnage
+                    cam.TxtDialog.text = answers[Random.Range(0, answers.Length)];
                 }
-                else if (StaticClass.disableInput && (SimpleInput.GetButtonDown("Fire1") || SimpleInput.GetButtonDown("Touch anywhere")))
+                else
                 {
-                    // A vérifier si le ++currentDialog ne saute pas
-                    // le dialogue de position 0
-                    if (++currentDialog < answers.Length && !randomMode)
-                    {
-                        cam.TxtDialog.text = answers[currentDialog];
-                    }
-                    else
-                    {
-                        cam.TxtDialog.transform.parent.gameObject.SetActive(false);
-                        StaticClass.disableInput = false; // Réactive les input de mouvements.
-                        currentDialog = 0; // Réinitialisation des dialogues en position 0.
-                        GetComponentInParent<NPC>().talking = false;
-                    }
+                    cam.TxtDialog.text = answers[currentDialog++];// Passe au dialog suivant par incrémentation.
+                }
+                StaticClass.disableInput = true;// Bloque les mouvements du personnage
+            }
+            else if (StaticClass.disableInput && (SimpleInput.GetButtonDown("Fire1") || SimpleInput.GetButtonDown("Touch anywhere")))
+            {
+                // A vérifier si le ++currentDialog ne saute pas
+                // le dialogue de position 0
+                if (++currentDialog < answers.Length && !randomMode)
+                {
+                    cam.TxtDialog.text = answers[currentDialog];
+                }
+                else
+                {
+                    cam.TxtDialog.transform.parent.gameObject.SetActive(false);
+                    StaticClass.disableInput = false; // Réactive les input de mouvements.
+                    currentDialog = 0; // Réinitialisation des dialogues en position 0.
+                    GetComponentInParent<NPC>().talking = false;
                 }
             }
         }

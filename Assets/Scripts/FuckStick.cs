@@ -2,6 +2,7 @@
 
 public class FuckStick : MonoBehaviour
 {
+    public bool takeable;
     public bool taken;
     public Sprite newSprite;
 
@@ -24,12 +25,14 @@ public class FuckStick : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (takeable && collision.gameObject.CompareTag("Player"))
         {
             taken = true;
+            takeable = false;
             GetComponent<SpriteRenderer>().sprite = newSprite;
             transform.parent = collision.gameObject.transform;
             transform.localPosition = Vector2.zero;
+            collision.gameObject.GetComponent<Player>().inHand = gameObject;
         }
     }
 }
