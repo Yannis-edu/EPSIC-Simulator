@@ -13,8 +13,7 @@ public class chairDoyen : MonoBehaviour
 
     private void Start()
     {
-        txtAction = Camera.main.GetComponent<CameraScript>().TxtAction;   
-      
+        txtAction = Camera.main.GetComponent<CameraScript>().TxtAction;         
     }
 
     void Update()
@@ -30,29 +29,30 @@ public class chairDoyen : MonoBehaviour
             if (SimpleInput.GetButtonDown("Vertical") && SimpleInput.GetAxis("Vertical") < 0)
             {
                 collision.gameObject.GetComponent<Player>().animator.SetBool("isAssis", true);
-                
-                ////////////////////////////////////////
-                //*** Déplacement horizontale stop ***//                             
+                //*** Arrete de mouvement horizontaux ***//
                 StaticClass.disableInput = true;
 
                 //*** positionnnement du player assis sur le sprite de la chaise ***//
                 //*** position de la chaise du doyen, x = -83 -- y = 145.5 ***//
+                //this.gameObject.SetActive(false); 
                 chair1 = GameObject.Find("Chair");
                 chair2 = GameObject.Find("player-chair");
 
-                Vector3 position = new Vector3(-83, 145, 0);
+                Vector3 position = new Vector3(0, 0, 0);
 
                 position.x = chair1.transform.position.x;
                 position.y = chair1.transform.position.y;
                 position.z = chair1.transform.position.z;
 
                 chair2.transform.position = position;
+                 
             }
 
             if (SimpleInput.GetButtonDown("Vertical") && SimpleInput.GetAxis("Vertical") > 0)
-            {
+            {            
                 collision.gameObject.GetComponent<Player>().animator.SetBool("isAssis", false);
-                StaticClass.disableInput = false;
+                //this.gameObject.SetActive(true);
+                StaticClass.disableInput = false;               
             }
         }
     }
@@ -64,6 +64,5 @@ public class chairDoyen : MonoBehaviour
         {
             Camera.main.GetComponent<CameraScript>().TxtAction.text = string.Empty;
         }
-    }
-   
+    } 
 }
