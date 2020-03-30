@@ -81,7 +81,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1464729832666093324}
   - component: {fileID: 1464729832666093322}
-  - component: {fileID: 5307524672538365373}
+  - component: {fileID: 8393095109257827561}
+  - component: {fileID: 1867107368}
   m_Layer: 10
   m_Name: Dialog
   m_TagString: Untagged
@@ -129,7 +130,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 4.9}
   m_EdgeRadius: 0
---- !u!114 &5307524672538365373
+--- !u!114 &8393095109257827561
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,13 +143,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcName: Maccaud
-  answers:
-  - "Esp\xE8ce de paillasson vertical !"
-  - "Manche \xE0 couille !"
-  - Ta gueule !
-  - Va chier dans ta caisse !
-  - "Vous \xEAtes une merde technique !"
-  randomMode: 1
+--- !u!114 &1867107368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464729832666093325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8b99d8a12e39e4b94d2d7162c7c978, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  diags:
+  - Charlie
+  - CommentModifier
+  - CrazyCap
+  - DEMO_Condition
+  - demo_Narration
+  - Example3Dialogue
+  - Example4_dialogue
+  - Item_LookUp
+  - Laura
+  - Maccaud
+  - MrCube
+  - NPCOnly
+  - QuestChartDemo
+  - Rogeiro
+  - TriggeredDude
+  - Witch
+  assignedIndex: 9
+  assignedID: 85341
+  assignedDialogue: Maccaud
+  interactionCount: 0
+  alias: 
+  overrideStartNode: -1
+  defaultNPCSprite: {fileID: 0}
+  defaultPlayerSprite: {fileID: 0}
+  targetManager: {fileID: 0}
+  preload: 0
+  notuptodate: 0
+  startp: 0
+  loadtag: 
+  langs: []
+  S_playerDiags: []
+  S_actionNodes: []
 --- !u!1 &1464729833240874274
 GameObject:
   m_ObjectHideFlags: 0

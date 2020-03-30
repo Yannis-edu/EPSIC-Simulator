@@ -167,6 +167,7 @@ MonoBehaviour:
   speed: 200
   runRatio: 1.5
   jumpPower: 1000
+  inHand: {fileID: 0}
   grounded: 0
   vertical: 0
   animator: {fileID: 0}
@@ -182,6 +183,7 @@ GameObject:
   - component: {fileID: 8687593038125251658}
   - component: {fileID: 8687593038125251660}
   - component: {fileID: 8687593038125251661}
+  - component: {fileID: 1260809054736076829}
   m_Layer: 10
   m_Name: Dialog
   m_TagString: Untagged
@@ -242,9 +244,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcName: Rogeiro
-  answers:
-  - Bonjour Monsieur
-  randomMode: 1
+--- !u!114 &1260809054736076829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8687593038125251659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8b99d8a12e39e4b94d2d7162c7c978, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  diags:
+  - Charlie
+  - CommentModifier
+  - CrazyCap
+  - DEMO_Condition
+  - demo_Narration
+  - Example3Dialogue
+  - Example4_dialogue
+  - Item_LookUp
+  - Laura
+  - Maccaud
+  - MrCube
+  - NPCOnly
+  - QuestChartDemo
+  - Rogeiro
+  - TriggeredDude
+  - Witch
+  assignedIndex: 13
+  assignedID: 72629
+  assignedDialogue: Rogeiro
+  interactionCount: 0
+  alias: 
+  overrideStartNode: -1
+  defaultNPCSprite: {fileID: 0}
+  defaultPlayerSprite: {fileID: 0}
+  targetManager: {fileID: 0}
+  preload: 0
+  notuptodate: 0
+  startp: 0
+  loadtag: 
+  langs: []
+  S_playerDiags: []
+  S_actionNodes: []
 --- !u!1 &8687593038184293676
 GameObject:
   m_ObjectHideFlags: 0

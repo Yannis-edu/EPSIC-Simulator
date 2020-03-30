@@ -2,7 +2,7 @@
 
 public class Maccaud : NPCDialog
 {
-    private void OnTriggerStay2D(Collider2D collision)
+    /*private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -19,7 +19,11 @@ public class Maccaud : NPCDialog
                     collision.gameObject.GetComponent<Player>().inHand = null;
                 }
             }
-            Message();
         }
+    }*/
+
+    protected override void BeforeFirstMessage()
+    {
+        GetComponent<VIDE_Assign>().overrideStartNode = Random.Range(0, 5);
     }
 }
