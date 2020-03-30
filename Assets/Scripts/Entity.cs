@@ -28,6 +28,7 @@ public class Entity : MonoBehaviour
     {
         if (jump)
         {
+            sound();
             if (grounded)
             {
                 jumpMaxTime = DateTime.Now.AddSeconds(0.2);
@@ -62,5 +63,15 @@ public class Entity : MonoBehaviour
         animator.SetFloat("speedH", Mathf.Abs(rb.velocity.x));
         animator.SetFloat("speedV", rb.velocity.y);
         animator.SetBool("isJumping", !grounded);
+    }
+    //Methode sonor
+    public void sound()
+    {
+        System.Media.SoundPlayer s = new System.Media.SoundPlayer
+        {
+            SoundLocation = @"Assets\Sounds\saut.wav"
+        };
+        s.PlayLooping();
+        s.Play();
     }
 }

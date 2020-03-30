@@ -32,11 +32,9 @@ public class chairDoyen : MonoBehaviour
                 //*** Arrete de mouvement horizontaux ***//
                 StaticClass.disableInput = true;
 
-                //*** positionnnement du player assis sur le sprite de la chaise ***//
-                //*** position de la chaise du doyen, x = -83 -- y = 145.5 ***//
-                //this.gameObject.SetActive(false); 
-                chair1 = GameObject.Find("Chair");
-                chair2 = GameObject.Find("player-chair");
+                //*** positionnnement du player assis sur le sprite de la chaise ***//             
+                chair1 = GameObject.Find("ChairPosition");
+                chair2 = GameObject.Find("Player");
 
                 Vector3 position = new Vector3(0, 0, 0);
 
@@ -45,13 +43,11 @@ public class chairDoyen : MonoBehaviour
                 position.z = chair1.transform.position.z;
 
                 chair2.transform.position = position;
-                 
             }
 
             if (SimpleInput.GetButtonDown("Vertical") && SimpleInput.GetAxis("Vertical") > 0)
             {            
                 collision.gameObject.GetComponent<Player>().animator.SetBool("isAssis", false);
-                //this.gameObject.SetActive(true);
                 StaticClass.disableInput = false;               
             }
         }
@@ -64,5 +60,5 @@ public class chairDoyen : MonoBehaviour
         {
             Camera.main.GetComponent<CameraScript>().TxtAction.text = string.Empty;
         }
-    } 
+    }
 }
