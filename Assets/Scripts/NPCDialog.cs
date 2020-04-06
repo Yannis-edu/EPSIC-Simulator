@@ -33,7 +33,10 @@ public class NPCDialog : MonoBehaviour
             }
             else if (StaticClass.disableInput && (SimpleInput.GetButtonDown("Fire1") || SimpleInput.GetButtonDown("Touch anywhere")))
             {
-                dialogue.CallNext();
+                if (!dialogue.playerContainer.activeSelf) //affiche le prochain dialogue au clic seulement si ce n'est pas une question
+                {
+                    dialogue.CallNext();
+                }
                 if (!dialogue.IsActive())
                 {
                     StaticClass.disableInput = false;
