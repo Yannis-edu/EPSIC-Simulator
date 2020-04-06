@@ -277,7 +277,7 @@ MonoBehaviour:
   assignedID: 72629
   assignedDialogue: Rogeiro
   interactionCount: 0
-  alias: 
+  alias: Rogeiro
   overrideStartNode: -1
   defaultNPCSprite: {fileID: 0}
   defaultPlayerSprite: {fileID: 0}

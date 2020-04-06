@@ -28,7 +28,7 @@ public class NPCDialog : MonoBehaviour
             {
                 StaticClass.disableInput = true;
                 GetComponentInParent<NPC>().talking = true;
-                BeforeFirstMessage();
+                BeforeFirstMessage(collision);
                 dialogue.Interact(GetComponent<VIDE_Assign>());
             }
             else if (StaticClass.disableInput && (SimpleInput.GetButtonDown("Fire1") || SimpleInput.GetButtonDown("Touch anywhere")))
@@ -47,7 +47,7 @@ public class NPCDialog : MonoBehaviour
         }
     }
 
-    protected virtual void BeforeFirstMessage()
+    protected virtual void BeforeFirstMessage(Collider2D collision)
     {
         
     }

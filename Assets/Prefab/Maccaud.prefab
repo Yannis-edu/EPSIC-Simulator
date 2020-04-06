@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 8393095109257827561}
   - component: {fileID: 1867107368}
   m_Layer: 10
-  m_Name: Dialog
+  m_Name: Dialog (maccaud)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,7 +176,7 @@ MonoBehaviour:
   assignedID: 85341
   assignedDialogue: Maccaud
   interactionCount: 0
-  alias: 
+  alias: Maccaud
   overrideStartNode: -1
   defaultNPCSprite: {fileID: 0}
   defaultPlayerSprite: {fileID: 0}

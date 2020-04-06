@@ -2,28 +2,36 @@
 
 public class Maccaud : NPCDialog
 {
-    /*private void OnTriggerStay2D(Collider2D collision)
+    protected override void BeforeFirstMessage(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        GameObject inHand = collision.gameObject.GetComponent<Player>().inHand;
+        if (inHand != null)
         {
-            cam.TxtAction.text = npcName;
-            GameObject inHand = collision.gameObject.GetComponent<Player>().inHand;
-            if (inHand != null)
+            FuckStick fuckStick = inHand.GetComponent<FuckStick>();
+            if (fuckStick != null)
             {
-                FuckStick fuckStick = inHand.GetComponent<FuckStick>();
-                if (fuckStick != null)
-                {
-                    fuckStick.transform.parent = gameObject.transform.parent;
-                    fuckStick.transform.localPosition = Vector2.zero;
-                    gameObject.transform.parent.GetComponent<Entity>().inHand = gameObject;
-                    collision.gameObject.GetComponent<Player>().inHand = null;
-                }
+                GetComponent<VIDE_Assign>().overrideStartNode = 6;
+                return;
             }
         }
-    }*/
 
-    protected override void BeforeFirstMessage()
-    {
         GetComponent<VIDE_Assign>().overrideStartNode = Random.Range(0, 5);
+    }
+
+    public void GetFuckStick()
+    {
+        Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        GameObject inHand = player.inHand;
+        if (inHand != null)
+        {
+            FuckStick fuckStick = inHand.GetComponent<FuckStick>();
+            if (fuckStick != null)
+            {
+                fuckStick.transform.parent = gameObject.transform.parent;
+                fuckStick.transform.localPosition = Vector2.zero;
+                gameObject.transform.parent.GetComponent<Entity>().inHand = gameObject;
+                player.inHand = null;
+            }
+        }
     }
 }
