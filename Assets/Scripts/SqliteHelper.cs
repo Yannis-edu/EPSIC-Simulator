@@ -26,13 +26,13 @@ public class SqliteHelper
     {
         IDbCommand dbcmd = getDbCommand();
         dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS answers(id INTEGER PRIMARY KEY AUTOINCREMENT, fk_question INTEGER, answer VARCHAR, correct BOOLEAN);";
-        dbcmd.ExecuteReader();
+        dbcmd.ExecuteNonQuery();
         dbcmd = getDbCommand();
         dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS categories(id INTEGER PRIMARY KEY AUTOINCREMENT, category VARCHAR, fk_parent INTEGER);";
-        dbcmd.ExecuteReader();
+        dbcmd.ExecuteNonQuery();
         dbcmd = getDbCommand();
-        dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS questions(id INTEGER PRIMARY KEY AUTOINCREMENT, question TEXT, points FLOAT, fk_category INTEGER, picture VARCHAR);";
-        dbcmd.ExecuteReader();
+        dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS questions(id INTEGER PRIMARY KEY AUTOINCREMENT, question TEXT, points FLOAT, fk_category INTEGER, picture VARCHAR, validated BOOLEAN);";
+        dbcmd.ExecuteNonQuery();
     }
 
     public IDataReader getDataById(string table_name, int id)
@@ -52,11 +52,25 @@ public class SqliteHelper
         return dbcmd.ExecuteReader();
     }
 
-    public IDataReader getRandom(string table)
+    public IDataReader getRandomQuestion(string categoryID)
     {
         IDbCommand dbcmd = getDbCommand();
-        dbcmd.CommandText = "SELECT * FROM " + table + " ORDER BY RANDOM() LIMIT 1";
+        dbcmd.CommandText = "SELECT * FROM questions WHERE fk_category = " + categoryID + " AND validated = 0 ORDER BY RANDOM() LIMIT 1";
         return dbcmd.ExecuteReader();
+    }
+
+    public void validateQuestion(int questionID)
+    {
+        IDbCommand dbcmd = getDbCommand();
+        dbcmd.CommandText = "UPDATE questions SET validated = 1 WHERE id = " + questionID;
+        dbcmd.ExecuteNonQuery();
+    }
+
+    public void resetAllQuestions()
+    {
+        IDbCommand dbcmd = getDbCommand();
+        dbcmd.CommandText = "UPDATE questions SET validated = 0";
+        dbcmd.ExecuteNonQuery();
     }
 
     public IDataReader insert(string table_name, string[] data)
@@ -110,8 +124,15 @@ public class SqliteHelper
     public int count(string table_name, string key, string value)
     {
         IDbCommand dbcmd = db_connection.CreateCommand();
-        dbcmd.CommandText = "SELECT COUNT(id) FROM " + table_name + " WHERE " + key + " = '" + value + "'"; ;
+        dbcmd.CommandText = "SELECT COUNT(id) FROM " + table_name + " WHERE " + key + " = '" + value + "'";
         return Convert.ToInt32(dbcmd.ExecuteScalar());
+    }
+
+    public float sum(string table_name, string keySum, string keyWhere, string valueWhere)
+    {
+        IDbCommand dbcmd = db_connection.CreateCommand();
+        dbcmd.CommandText = "SELECT SUM(" + keySum + ") FROM " + table_name + " WHERE " + keyWhere + " = '" + valueWhere + "'";
+        return (float)Convert.ToDouble(dbcmd.ExecuteScalar());
     }
 
     public void close()

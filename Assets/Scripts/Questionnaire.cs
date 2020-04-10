@@ -6,11 +6,20 @@ using UnityEngine.UI;
 public class Questionnaire : MonoBehaviour
 {
     public string questionnaireName;
+    public string categoryName;
+    private int categoryID, questionID;
+    private float points;
     private CameraScript cam;
     
     private void Start()
     {
         cam = Camera.main.GetComponent<CameraScript>();
+        if(categoryName != "")
+        {
+            var category = new SqliteHelper().getDataByString("categories", "category", categoryName);
+            category.Read();
+            categoryID = category.GetInt32(0);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -18,37 +27,52 @@ public class Questionnaire : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             cam.TxtAction.text = questionnaireName;
-            if (!StaticClass.disableInput && SimpleInput.GetButtonDown("Fire1"))
+            if (categoryID != 0 && !StaticClass.disableInput && SimpleInput.GetButtonDown("Fire1"))
             {
                 SqliteHelper sqlite = new SqliteHelper();
-                var question = sqlite.getRandom("questions");
-                question.Read();
-                cam.TxtQuestion.text = question.GetString(1);
-
-                if (question.GetString(4) != "")
+                var question = sqlite.getRandomQuestion(categoryID.ToString());
+                if (question.Read())
                 {
-                    byte[] bytes = File.ReadAllBytes(Application.persistentDataPath + "/images/" + question.GetString(4));
-                    Texture2D imgTexture = new Texture2D(1, 1);
-                    imgTexture.filterMode = FilterMode.Bilinear;
-                    imgTexture.LoadImage(bytes);
-                    Sprite sprite = Sprite.Create(imgTexture, new Rect(0, 0, imgTexture.width, imgTexture.height), new Vector2(0f, 0f), 1.0f);
-                    cam.ImgQuestion.GetComponent<AspectRatioFitter>().aspectRatio = (float)imgTexture.width / imgTexture.height;
-                    cam.ImgQuestion.sprite = sprite;
-                    cam.ImgQuestion.gameObject.SetActive(true);
-                }
+                    cam.TxtQuestion.text = question.GetString(1);
+                    points = question.GetFloat(2);
+                    questionID = question.GetInt32(0);
 
-                var answers = sqlite.getDataByString("answers", "fk_question", question.GetInt32(0).ToString());
-                for (int i = 0; i < cam.answers.Length; i++)
-                {
-                    if (answers.Read())
+                    if (question.GetString(4) != "")
                     {
-                        cam.answers[i].GetComponentInChildren<Text>().text = i + 1 + ") " + answers.GetString(2);
-                        cam.answers[i].GetComponentInChildren<Answer>().correct = answers.GetBoolean(3);
+                        byte[] bytes = File.ReadAllBytes(Application.persistentDataPath + "/images/" + question.GetString(4));
+                        Texture2D imgTexture = new Texture2D(1, 1);
+                        imgTexture.filterMode = FilterMode.Bilinear;
+                        imgTexture.LoadImage(bytes);
+                        Sprite sprite = Sprite.Create(imgTexture, new Rect(0, 0, imgTexture.width, imgTexture.height), new Vector2(0f, 0f), 1.0f);
+                        cam.ImgQuestion.GetComponent<AspectRatioFitter>().aspectRatio = (float)imgTexture.width / imgTexture.height;
+                        cam.ImgQuestion.sprite = sprite;
+                        cam.ImgQuestion.gameObject.SetActive(true);
                     }
-                }
 
-                cam.TxtQuestion.transform.parent.gameObject.SetActive(true);
-                StaticClass.disableInput = true;
+                    var answers = sqlite.getDataByString("answers", "fk_question", question.GetInt32(0).ToString());
+                    for (int i = 0; i < cam.answers.Length; i++)
+                    {
+                        if (answers.Read())
+                        {
+                            cam.answers[i].GetComponentInChildren<Button>().interactable = true;
+                            cam.answers[i].GetComponentInChildren<Text>().text = i + 1 + ") " + answers.GetString(2);
+                            cam.answers[i].GetComponentInChildren<Answer>().correct = answers.GetBoolean(3);
+                        }
+                        else
+                        {
+                            cam.answers[i].GetComponentInChildren<Button>().interactable = false;
+                            cam.answers[i].GetComponentInChildren<Text>().text = "";
+                            cam.answers[i].GetComponentInChildren<Answer>().correct = false;
+                        }
+                    }
+
+                    cam.TxtQuestion.transform.parent.gameObject.SetActive(true);
+                    StaticClass.disableInput = true;
+                }
+                else
+                {
+                    
+                }
             }
             else
             {
@@ -56,18 +80,26 @@ public class Questionnaire : MonoBehaviour
                 {
                     if (StaticClass.disableInput && SimpleInput.GetButtonDown("Answer " + (i + 1)))
                     {
-                        if (cam.answers[i].GetComponentInChildren<Answer>().correct)
+                        if (cam.answers[i].GetComponentInChildren<Button>().interactable)
                         {
-                            // True answer
+                            if (cam.answers[i].GetComponentInChildren<Answer>().correct)
+                            {
+                                PointsSystem.categories[categoryName].Points += points;
+                                SqliteHelper sqlite = new SqliteHelper();
+                                sqlite.validateQuestion(questionID);
+                                cam.trueIcon.GetComponent<Image>().CrossFadeAlpha(1, 0, false);
+                                cam.trueIcon.GetComponent<Image>().CrossFadeAlpha(0, 1, false);
+                            }
+                            else
+                            {
+                                cam.falseIcon.GetComponent<Image>().CrossFadeAlpha(1, 0, false);
+                                cam.falseIcon.GetComponent<Image>().CrossFadeAlpha(0, 1, false);
+                            }
+                            cam.answers[i].GetComponentInChildren<ButtonInputUI>().button.value = false;
+                            cam.TxtQuestion.transform.parent.gameObject.SetActive(false);
+                            cam.ImgQuestion.gameObject.SetActive(false);
+                            StaticClass.disableInput = false;
                         }
-                        else
-                        {
-                            // False answer
-                        }
-                        cam.answers[i].GetComponentInChildren<ButtonInputUI>().button.value = false;
-                        cam.TxtQuestion.transform.parent.gameObject.SetActive(false);
-                        cam.ImgQuestion.gameObject.SetActive(false);
-                        StaticClass.disableInput = false;
                     }
                 }
             }

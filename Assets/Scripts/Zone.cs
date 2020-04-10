@@ -27,8 +27,8 @@ public class Zone : MonoBehaviour
 
             cam.minPosition = new Vector2(left, btm);
             cam.maxPosition = new Vector2(right, top);
-        }
 
-        cam.TxtZone.text = zoneName;
+            cam.TxtZone.text = zoneName;
+        }
     }
 }

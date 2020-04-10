@@ -1,5 +1,6 @@
-﻿public static class StaticClass
+﻿using UnityEngine;
+
+public static class StaticClass
 {
-    public static int save;
     public static bool disableInput;
 }
