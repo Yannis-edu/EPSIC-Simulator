@@ -27,11 +27,12 @@ public class Entity : MonoBehaviour
     protected void Move(float horizontal, bool jump, bool run)
     {
         if (jump)
-        {
+        {        
             if (grounded)
             {
                 jumpMaxTime = DateTime.Now.AddSeconds(0.2);
                 isJumping = true;
+                sound();
             }
             else if (DateTime.Now > jumpMaxTime)
             {
@@ -62,5 +63,14 @@ public class Entity : MonoBehaviour
         animator.SetFloat("speedH", Mathf.Abs(rb.velocity.x));
         animator.SetFloat("speedV", rb.velocity.y);
         animator.SetBool("isJumping", !grounded);
+    }
+    //Methode sonor
+    public void sound()
+    {
+        System.Media.SoundPlayer s = new System.Media.SoundPlayer
+        {
+            SoundLocation = @"Assets\Sounds\saut.wav"
+        };
+        s.Play();
     }
 }
