@@ -38,10 +38,14 @@ public class Elevator : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && SimpleInput.GetButton("Fire1"))
         {
-            if (gameObject.GetComponent<Player>().inHand)
+            GameObject inHand = collision.gameObject.GetComponent<Player>().inHand;
+            if (inHand != null)
             {
-                elevatorPanel.SetActive(true);
-
+                ElevatorCard card = inHand.GetComponent<ElevatorCard>();
+                if (card != null)
+                {
+                    elevatorPanel.SetActive(true);
+                }
             }
         }
     }
