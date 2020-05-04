@@ -6,7 +6,7 @@ public class ElevatorPanel : MonoBehaviour
 
     private void FixedUpdate()
     {
-        for (int i = 0; i <= 9; i++)
+        for (int i = 5; i <= 9; i++)
         {
             if (Input.GetKey(i.ToString()))
             {
