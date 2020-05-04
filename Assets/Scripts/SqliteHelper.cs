@@ -73,6 +73,13 @@ public class SqliteHelper
         dbcmd.ExecuteNonQuery();
     }
 
+    public void factoryReset()
+    {
+        deleteAllData("answers");
+        deleteAllData("categories");
+        deleteAllData("questions");
+    }
+
     public IDataReader insert(string table_name, string[] data)
     {
         IDbCommand dbcmd = getDbCommand();

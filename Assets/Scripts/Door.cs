@@ -6,6 +6,7 @@ public class Door : MonoBehaviour
     public Door destinationDoor;
     public string destinationName;
     private Text txtAction;
+    public AudioClip openSound;
 
     private void Start()
     {
@@ -36,11 +37,6 @@ public class Door : MonoBehaviour
     //Methode sonor
     public void sound()
     {
-        System.Media.SoundPlayer s = new System.Media.SoundPlayer
-        {
-            SoundLocation = @"Assets\Sounds\porte.wav"
-        };
-        //s.PlayLooping();
-        s.Play();
+        GetComponent<AudioSource>().PlayOneShot(openSound);
     }
 }

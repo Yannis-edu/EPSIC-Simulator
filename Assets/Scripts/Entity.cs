@@ -17,6 +17,8 @@ public class Entity : MonoBehaviour
     protected DateTime jumpMaxTime;
     protected bool isJumping;
 
+    public AudioClip jumpSound;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -64,13 +66,13 @@ public class Entity : MonoBehaviour
         animator.SetFloat("speedV", rb.velocity.y);
         animator.SetBool("isJumping", !grounded);
     }
+
     //Methode sonor
     public void sound()
     {
-        System.Media.SoundPlayer s = new System.Media.SoundPlayer
-        {
-            SoundLocation = @"Assets\Sounds\saut.wav"
-        };
-        s.Play();
+        var player = GetComponent<AudioSource>();
+        if (!player.isPlaying) {
+            player.PlayOneShot(jumpSound);
+        }
     }
 }
