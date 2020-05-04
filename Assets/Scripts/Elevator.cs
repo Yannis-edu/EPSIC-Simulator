@@ -38,7 +38,11 @@ public class Elevator : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && SimpleInput.GetButton("Fire1"))
         {
-            elevatorPanel.SetActive(true);
+            if (gameObject.GetComponent<Player>().inHand)
+            {
+                elevatorPanel.SetActive(true);
+
+            }
         }
     }
 
