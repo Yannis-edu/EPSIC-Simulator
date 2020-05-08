@@ -36,6 +36,7 @@ public class Elevator : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        Camera.main.GetComponent<CameraScript>().TxtAction.text = "Ascensseur";
         if (collision.gameObject.CompareTag("Player") && SimpleInput.GetButton("Fire1"))
         {
             GameObject inHand = collision.gameObject.GetComponent<Player>().inHand;
@@ -45,9 +46,11 @@ public class Elevator : MonoBehaviour
                 if (card != null)
                 {
                     elevatorPanel.SetActive(true);
+                    return;
                 }
             }
         }
+        Camera.main.GetComponent<CameraScript>().TxtAction.text += "\nNécessite un pass";
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -55,6 +58,7 @@ public class Elevator : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             elevatorPanel.SetActive(false);
+            Camera.main.GetComponent<CameraScript>().TxtAction.text = string.Empty;
         }
     }
 }

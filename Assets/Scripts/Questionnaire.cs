@@ -14,7 +14,7 @@ public class Questionnaire : MonoBehaviour
     private void Start()
     {
         cam = Camera.main.GetComponent<CameraScript>();
-        if(categoryName != "")
+        if (categoryName != "")
         {
             var category = new SqliteHelper().getDataByString("categories", "category", categoryName);
             category.Read();
