@@ -67,6 +67,14 @@ public class Entity : MonoBehaviour
         animator.SetBool("isJumping", !grounded);
     }
 
+    public void Drop()
+    {
+        if (inHand != null)
+        {
+            inHand.GetComponent<Takable>().Drop(this);
+        }
+    }
+
     //Methode sonor
     public void sound()
     {
