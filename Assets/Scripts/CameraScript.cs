@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class CameraScript : MonoBehaviour
@@ -15,7 +16,10 @@ public class CameraScript : MonoBehaviour
     /// Détéction du matériel
     /// </summary>
     private void Start()
-    {      
+    {
+        player.transform.position = new Vector2(PlayerPrefs.GetFloat("PlayerX", player.transform.position.x),
+                                                PlayerPrefs.GetFloat("PlayerY", player.transform.position.y));
+        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
         Camera camera = GetComponent<Camera>();
         height = 2f * camera.orthographicSize;
         width = height * camera.aspect;

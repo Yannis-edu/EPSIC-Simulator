@@ -1,27 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class chairDoyen : MonoBehaviour
+public class ChairDoyen : MonoBehaviour
 {
     public string destinationName;
     private Text txtAction;
-    public GameObject chair1;
-    public GameObject chair2;
 
     private void Start()
     {
         txtAction = Camera.main.GetComponent<CameraScript>().TxtAction;         
     }
 
-    void Update()
-    {
-        
-    }
 
-        private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -32,17 +23,9 @@ public class chairDoyen : MonoBehaviour
                 //*** Arrete de mouvement horizontaux ***//
                 StaticClass.disableInput = true;
 
-                //*** positionnnement du player assis sur le sprite de la chaise ***//             
-                chair1 = GameObject.Find("ChairPosition");
-                chair2 = GameObject.Find("Player");
-
-                Vector3 position = new Vector3(0, 0, 0);
-
-                position.x = chair1.transform.position.x;
-                position.y = chair1.transform.position.y;
-                position.z = chair1.transform.position.z;
-
-                chair2.transform.position = position;
+                //*** positionnnement du player assis sur le sprite de la chaise ***//
+                collision.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+                collision.gameObject.transform.position = transform.position;
             }
 
             if (SimpleInput.GetButtonDown("Vertical") && SimpleInput.GetAxis("Vertical") > 0)

@@ -11,7 +11,7 @@ public class DbUpgrade : MonoBehaviour
         StartCoroutine(GetText());
     }
 
-    IEnumerator GetText()
+    public IEnumerator GetText()
     {
         UnityWebRequest www = UnityWebRequest.Get("https://www.normalux.ch/medias/divers/EPSIC%20Simulator/upgrade.php");
         yield return www.SendWebRequest();

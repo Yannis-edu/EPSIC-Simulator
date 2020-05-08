@@ -19,7 +19,9 @@ public class PauseMenu : MonoBehaviour
 
     public void Save()
     {
-        
+        Vector2 xy = GameObject.Find("Player").transform.position;
+        PlayerPrefs.SetFloat("PlayerX", xy.x);
+        PlayerPrefs.SetFloat("PlayerY", xy.y);
     }
 
     public void SaveAndQuit()
