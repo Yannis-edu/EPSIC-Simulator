@@ -18,7 +18,7 @@ public class Door : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             txtAction.text = destinationName;
-            if (SimpleInput.GetButtonDown("Vertical") && SimpleInput.GetAxis("Vertical") > 0)
+            if (!StaticClass.disableInput && SimpleInput.GetButtonDown("Vertical") && SimpleInput.GetAxis("Vertical") > 0)
             {
                 sound();
                 collision.gameObject.transform.position = destinationDoor.transform.position;
