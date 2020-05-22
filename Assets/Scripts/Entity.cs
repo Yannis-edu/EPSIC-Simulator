@@ -34,7 +34,7 @@ public class Entity : MonoBehaviour
             {
                 jumpMaxTime = DateTime.Now.AddSeconds(0.2);
                 isJumping = true;
-                sound();
+                Sound();
             }
             else if (DateTime.Now > jumpMaxTime)
             {
@@ -76,7 +76,7 @@ public class Entity : MonoBehaviour
     }
 
     //Methode sonor
-    public void sound()
+    public void Sound()
     {
         var player = GetComponent<AudioSource>();
         if (!player.isPlaying) {
