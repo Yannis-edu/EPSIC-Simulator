@@ -18,9 +18,9 @@ public class Door : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             txtAction.text = destinationName;
-            if (SimpleInput.GetButtonDown("Vertical") && SimpleInput.GetAxis("Vertical") > 0)
+            if (!StaticClass.disableInput && SimpleInput.GetButtonDown("Vertical") && SimpleInput.GetAxis("Vertical") > 0)
             {
-                sound();
+                Sound();
                 collision.gameObject.transform.position = destinationDoor.transform.position;
                 Camera.main.transform.position = new Vector3(destinationDoor.transform.position.x, destinationDoor.transform.position.y, Camera.main.transform.position.z);
             }
@@ -35,7 +35,7 @@ public class Door : MonoBehaviour
         }
     }
     //Methode sonor
-    public void sound()
+    public void Sound()
     {
         GetComponent<AudioSource>().PlayOneShot(openSound);
     }

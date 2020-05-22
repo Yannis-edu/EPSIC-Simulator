@@ -10,6 +10,7 @@ public class CameraScript : MonoBehaviour
     public Image ImgQuestion;
     public GameObject mobileControl, pauseMenu, trueIcon, falseIcon;
     public GameObject[] answers;
+    public Text customText;
     private float width, height;
 
     /// <summary>
