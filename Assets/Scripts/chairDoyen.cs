@@ -26,8 +26,8 @@ public class ChairDoyen : MonoBehaviour
                 StaticClass.disableInput = true;
 
                 //*** positionnnement du player assis sur le sprite de la chaise ***//
-                collision.gameObject.GetComponent<SpriteRenderer>().flipX = false;
-                collision.gameObject.transform.position = transform.position;
+                //collision.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+                //collision.gameObject.transform.position = transform.position;
 
                 chair1 = GameObject.Find("ChairPosition");
                 chair2 = GameObject.Find("player-chair");
