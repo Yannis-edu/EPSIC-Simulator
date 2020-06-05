@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class Player : Entity
 {
-    public GameObject pointsScreen;   
+    public GameObject pointsScreen;
+    public AudioClip openSound;
 
     private void FixedUpdate()
     {
@@ -19,17 +20,9 @@ public class Player : Entity
             if (SimpleInput.GetButtonUp("Fire2"))
             {
                 Drop();
-                LootSound();
+                GetComponent<AudioSource>().PlayOneShot(openSound);
             }
         }
 
-    }
-    public void LootSound()
-    {
-        System.Media.SoundPlayer s = new System.Media.SoundPlayer
-        {
-            SoundLocation = "lootSound.wav"
-        };
-        s.Play();
     }
 }
